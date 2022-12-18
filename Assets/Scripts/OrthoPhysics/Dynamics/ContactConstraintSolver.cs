@@ -97,24 +97,26 @@ namespace OrthoPhysics
 
             if (contactConstraint.body2.kind == BodyKind.Static && contactConstraint.body1.staticCollisionCount >= _trapStaticCollisionCount)
             {
-                FixVector2 movement = contactConstraint.body1.transform.position.xz - contactConstraint.body1.collisionFreePosition;
-                Fix64 movementSqrMagnitude = movement.sqrMagnitude;
-                if (movementSqrMagnitude > Fix64.Epsilon)
+                if (contactConstraint.trapPenetrationDepth > penetrationDepth)
                 {
-                    Fix64 movementMagnitude = Fix64.Sqrt(movementSqrMagnitude);
-                    Fix64 movementCorrection = Fix64.Min(Fix64.Min(_maxCorrection, movementMagnitude), (Fix64.One - _correctionScale) * (movementMagnitude + _correctionSlop));
-                    contactConstraint.body1.AddTranslation2D(movement / movementMagnitude * -movementCorrection);
-
-                    if (contactConstraint.trapPenetrationDepth > penetrationDepth)
+                    contactConstraint.trapPenetrationDepth = penetrationDepth;
+                    Fix64 normalCorrection = Fix64.Min(Fix64.Min(_maxCorrection, penetrationDepth), _correctionScale * (penetrationDepth + _correctionSlop));
+                    FixVector2 translation = contactConstraint.manifold.normal * normalCorrection;
+                    contactConstraint.body1.AddTranslation2D(-translation);
+                }
+                else
+                {
+                    FixVector2 movement = contactConstraint.body1.transform.position.xz - contactConstraint.body1.collisionFreePosition;
+                    Fix64 movementSqrMagnitude = movement.sqrMagnitude;
+                    if (movementSqrMagnitude > Fix64.Epsilon)
                     {
-                        contactConstraint.trapPenetrationDepth = penetrationDepth;
-                        Fix64 normalCorrection = Fix64.Min(Fix64.Min(_maxCorrection, penetrationDepth), _correctionScale * (penetrationDepth + _correctionSlop));
-                        FixVector2 translation = contactConstraint.manifold.normal * normalCorrection;
-                        contactConstraint.body1.AddTranslation2D(-translation);
+                        Fix64 movementMagnitude = Fix64.Sqrt(movementSqrMagnitude);
+                        Fix64 movementCorrection = Fix64.Min(Fix64.Min(_maxCorrection, movementMagnitude), (Fix64.One - _correctionScale) * (movementMagnitude + _correctionSlop));
+                        contactConstraint.body1.AddTranslation2D(movement / movementMagnitude * -movementCorrection);
                     }
-                    return;
                 }
             }
+            else
             {
                 Fix64 normalCorrection = Fix64.Min(Fix64.Min(_maxCorrection, penetrationDepth), _correctionScale * (penetrationDepth + _correctionSlop));
                 FixVector2 translation = contactConstraint.manifold.normal * normalCorrection * contactConstraint.normalMass;
