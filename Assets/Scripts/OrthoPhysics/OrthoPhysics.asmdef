@@ -1,0 +1,17 @@
+{
+    "name": "OrthoPhysics",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4e3321b2b67f2814fb2243c291cb672c",
+        "GUID:e27f0e78ce5a30e4fb41abc18c0bc0c0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

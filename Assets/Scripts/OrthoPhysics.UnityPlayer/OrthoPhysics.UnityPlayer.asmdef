@@ -1,0 +1,19 @@
+{
+    "name": "OrthoPhysics.UnityPlayer",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4e3321b2b67f2814fb2243c291cb672c",
+        "GUID:e27f0e78ce5a30e4fb41abc18c0bc0c0",
+        "GUID:62af25d0799f07349ba2a5aa78751c35",
+        "GUID:1fd514b99b97e7747bf1685c31b489ed"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

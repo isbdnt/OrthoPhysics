@@ -1,0 +1,20 @@
+{
+    "name": "OrthoPhysics.UnityEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e27f0e78ce5a30e4fb41abc18c0bc0c0",
+        "GUID:62af25d0799f07349ba2a5aa78751c35",
+        "GUID:1e7cdb517ddcf774baf054db34fe2279"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
